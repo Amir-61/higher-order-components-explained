@@ -1,9 +1,12 @@
 import React from 'react';
 
-import withData from '../../with-data';
+import useFetch from '../useFetch.effect.js/useFetch.effect'
 
-const UserProfile = ({ data, name, email }) => (
-  <div className='container'>
+const UserProfile = ({ name, email }) => {
+
+  const data = useFetch('https://jsonplaceholder.typicode.com/posts')
+
+  return(<div className='container'>
     <h1>{name}</h1>
     <h2>{email}</h2>
     Posts:
@@ -13,7 +16,8 @@ const UserProfile = ({ data, name, email }) => (
         <p> {post.body} </p>
       </div>
     ))}
-  </div>
-);
+  </div>)
+}
 
-export default withData(UserProfile);
+
+export default UserProfile;
